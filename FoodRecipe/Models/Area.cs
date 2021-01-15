@@ -9,4 +9,8 @@ namespace FoodRecipe.model
     {
         public string strArea { get; set; }
     }
+    public class AreaList
+    {
+        public List<Area> meals { get; set; }
+    }
 }

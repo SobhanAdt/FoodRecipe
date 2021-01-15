@@ -1,3 +1,4 @@
+using FoodRecipe.HttpClientFolder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace FoodRecipe
         public void ConfigureServices(IServiceCollection services)
         {
             // test
+            services.AddHttpClient<HttpClientFood>();
             services.AddControllers();
         }
 
