@@ -13,17 +13,30 @@ namespace FoodRecipe.Controllers
     [ApiController]
     public class foodsController : ControllerBase
     {
-        private readonly HttpClientFood client;
-
-        public foodsController(HttpClientFood client)
+        private readonly HttpClientFood clientFood;
+        public foodsController(HttpClientFood clientFood)
         {
-            this.client = client;
+            this.clientFood = clientFood;
         }
-
-        [HttpGet("{id}")]
-        public foodsById GetById(int id)
+        [HttpGet]
+        public List<Food> GetFood([FromQuery] GetFoodByFilter filter)
         {
-            return client.GetById(id);
+            switch (filter.cat)
+            {
+                case "ing":
+                    return clientFood.GetFoodByIng(filter.selected);
+                case "meal":
+                    return clientFood.GetFoodBycat(filter.cat);
+                case "area":
+                    return clientFood.GetFoodByarea(filter.area);
+
+                default:
+                    {
+                        throw new ArgumentException("Invalid Category");
+                    }
+            }
+            return null;
+            
         }
     }
 }

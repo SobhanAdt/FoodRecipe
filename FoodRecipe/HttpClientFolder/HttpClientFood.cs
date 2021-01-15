@@ -118,6 +118,75 @@ namespace FoodRecipe.HttpClientFolder
             }
             return result;
         }
+        public List<Food> GetFoodByIng(string query)
+        {
+            var httpResponse = client.GetAsync($"api/json/v1/1/filter.php?i={query}").Result;
+            httpResponse.EnsureSuccessStatusCode();
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            List<Food> result;
+            using (HttpContent content = httpResponse.Content)
+            {
+
+                string stringContent = content.ReadAsStringAsync()
+                                               .Result;
+
+                var resultService = JsonSerializer.Deserialize<FoodByIngredientThemealdbList>(stringContent);
+
+
+                result = resultService.meals.Select(x => new Food() { food = x.strMeal, foodThumb = x.strMealThumb, id = x.idMeal }).ToList();
+
+            }
+            return result;
+        }
+        public List<Food> GetFoodBycat(string query)
+        {
+            var httpResponse = client.GetAsync($"api/json/v1/1/filter.php?c={query}").Result;
+            httpResponse.EnsureSuccessStatusCode();
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            List<Food> result;
+            using (HttpContent content = httpResponse.Content)
+            {
+
+                string stringContent = content.ReadAsStringAsync()
+                                               .Result;
+
+                var resultService = JsonSerializer.Deserialize<FoodByIngredientThemealdbList>(stringContent);
+
+
+                result = resultService.meals.Select(x => new Food() { food = x.strMeal, foodThumb = x.strMealThumb, id = x.idMeal }).ToList();
+
+            }
+            return result;
+        }
+        public List<Food> GetFoodByarea(string query)
+        {
+            var httpResponse = client.GetAsync($"api/json/v1/1/filter.php?a={query}").Result;
+            httpResponse.EnsureSuccessStatusCode();
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            List<Food> result;
+            using (HttpContent content = httpResponse.Content)
+            {
+
+                string stringContent = content.ReadAsStringAsync()
+                                               .Result;
+
+                var resultService = JsonSerializer.Deserialize<FoodByIngredientThemealdbList>(stringContent);
+
+
+                result = resultService.meals.Select(x => new Food() { food = x.strMeal, foodThumb = x.strMealThumb, id = x.idMeal }).ToList();
+
+            }
+            return result;
+        }
 
 
        
