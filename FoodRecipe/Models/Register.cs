@@ -9,6 +9,6 @@ namespace FoodRecipe.Models
     {
         public string email { get; set; }
 
-        public List<favorites> favorites { get; set; }
+        public List<string> favorites { get; set; }
     }
 }

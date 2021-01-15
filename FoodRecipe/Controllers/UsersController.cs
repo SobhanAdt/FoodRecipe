@@ -13,9 +13,9 @@ namespace FoodRecipe.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private UsersRepository repository;
+        private IUserRepository repository;
 
-        public UsersController(UsersRepository repository)
+        public UsersController(IUserRepository repository)
         {
             this.repository = repository;
         }

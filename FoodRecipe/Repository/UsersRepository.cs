@@ -6,14 +6,32 @@ using FoodRecipe.Models;
 
 namespace FoodRecipe.Repository
 {
-    public class UsersRepository
+    public interface IUserRepository
     {
-        private List<Register> Registers = new List<Register>();
+        void Insert(Register register);
+        Register GetByEmail(string email);
+
+    }
+    public class UsersRepository : IUserRepository
+    {
+        private static List<Register> Registers = new List<Register>();
 
         public void Insert(Register register)
         {
-            Registers.Add(register);
+            if (!Registers.Any(x => x.email == register.email))
+            {
+                Registers.Add(register);
 
+            }
+            else
+            {
+                return; 
+            }
+        }
+
+        public Register GetByEmail(string email)
+        {
+            return Registers.FirstOrDefault(x => x.email == email);
         }
     }
 }
