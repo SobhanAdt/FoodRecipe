@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FoodRecipe.HttpClientFolder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,12 @@ namespace FoodRecipe.Controllers
     [ApiController]
     public class areasController : ControllerBase
     {
+        private readonly HttpClientFood food;
+        public areasController(HttpClientFood food)
+        {
+            this.food = food;
+        }
+        [HttpGet]
+        public 
     }
 }
