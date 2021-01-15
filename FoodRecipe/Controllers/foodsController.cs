@@ -38,5 +38,11 @@ namespace FoodRecipe.Controllers
             return null;
             
         }
+
+        [HttpGet("{id}")]
+        public foodsById GetById(int id)
+        {
+            return clientFood.GetById(id);
+        }
     }
 }
