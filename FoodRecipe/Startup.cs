@@ -1,3 +1,4 @@
+using FoodRecipe.HttpClientFolder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,10 +17,10 @@ namespace FoodRecipe
 {
     public class Startup
     {
-        //commnet
+        
         public Startup(IConfiguration configuration)
         {
-            //ffdg
+           
             Configuration = configuration;
         }
 

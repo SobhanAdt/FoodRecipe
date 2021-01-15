@@ -36,8 +36,8 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-                result = JsonSerializer.Deserialize<List<Area>>(stringContent);
-                result = result.Take(size).ToList();
+                var resultService = JsonSerializer.Deserialize<AreaList>(stringContent);
+                result = resultService.meals.Select(x => new Area { strArea = x.strArea }).Take(size).ToList();
             }
             return result;
         }
@@ -56,8 +56,8 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-                result = JsonSerializer.Deserialize<List<categories>>(stringContent);
-                result = result.Take(size).ToList();
+                var resultService = JsonSerializer.Deserialize<categorieslst>(stringContent);
+                result = resultService.meals.Select(x => new categories { strCategory = x.strCategory }).Take(size).ToList();
             }
             return result;
         }
@@ -76,9 +76,40 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-                result = JsonSerializer.Deserialize<List<ingredients>>(stringContent);
+                var resultService = JsonSerializer.Deserialize<ingredientslst>(stringContent);
+                result = resultService.meals.Select(x => new ingredients { id = x.idIngredient,ingredient=x.strIngredient }).Take(size).ToList();
 
-                result = result.Take(size).ToList();
+            }
+            return result;
+        }
+
+        public foodsById GetById(int id)
+        {
+            var httpResponse = client.GetAsync($"api/json/v1/1/lookup.php?i={id}").Result;
+            httpResponse.EnsureSuccessStatusCode();
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            foodsById result;
+            using (HttpContent content = httpResponse.Content)
+            {
+
+                string stringContent = content.ReadAsStringAsync()
+                    .Result;
+
+                var serviceResult = JsonSerializer.Deserialize<FoodByIdthemealdbList>(stringContent);
+
+
+                result = serviceResult.meals.Select(x => new foodsById()
+                {
+                    id = x.idMeal,
+                    area = x.strArea,
+                    instructions = x.strInstructions,
+                    mealThumb = x.strMealThumb,
+                    title = x.strMeal
+                }).FirstOrDefault();
+
 
             }
             return result;
