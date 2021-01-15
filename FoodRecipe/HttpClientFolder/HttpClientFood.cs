@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FoodRecipe.model;
 using FoodRecipe.Models;
+using FoodRecipe.Repository;
 
 namespace FoodRecipe.HttpClientFolder
 {
@@ -13,16 +14,18 @@ namespace FoodRecipe.HttpClientFolder
     {
         private readonly HttpClient client;
         private const string BaseAddress = "https://www.themealdb.com";
+        private IUserRepository repository;
 
 
 
-
-        public HttpClientFood(HttpClient client)
+        public HttpClientFood(HttpClient client , IUserRepository repository)
         {
             this.client = client;
             this.client.BaseAddress = new Uri(BaseAddress);
             this.client.DefaultRequestHeaders
                        .Add("Accept", "application/json");
+
+            this.repository = repository;
 
         }
         public List<Area> GetArea(int size)
@@ -188,8 +191,35 @@ namespace FoodRecipe.HttpClientFolder
             return result;
         }
 
+        public List<Food> GetFavorites(string email)
+        {
+            var SuccessEmail = repository.GetByEmail(email);
+            if (SuccessEmail == null)
+            {
+                return null;
+            }
 
-       
+            List<Food> lstfoods = new List<Food>();
+            for (int i = 0; i < SuccessEmail.favorites.Count; i++)
+            {
+                var result=  GetFoodByIng(SuccessEmail.favorites[i]);
+                lstfoods.AddRange(result);
+            }
+
+            List<Food> resultSet = new List<Food>();
+            Random rmd = new Random();
+            for (int i = 0; i < 6; i++)
+            {
+               var index= rmd.Next(0, lstfoods.Count);
+              resultSet.Add(lstfoods[index]); 
+            }
+
+            return resultSet;
+
+        }
+
+
+
 
     }
 }

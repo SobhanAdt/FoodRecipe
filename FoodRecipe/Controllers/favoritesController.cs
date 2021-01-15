@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FoodRecipe.HttpClientFolder;
+using FoodRecipe.Models;
 
 namespace FoodRecipe.Controllers
 {
@@ -11,5 +13,17 @@ namespace FoodRecipe.Controllers
     [ApiController]
     public class favoritesController : ControllerBase
     {
+        private readonly HttpClientFood client;
+
+        public favoritesController(HttpClientFood client)
+        {
+            this.client = client;
+        }
+
+        [HttpGet]
+        public List<Food> GetFavorites([FromQuery] string email)
+        {
+            return client.GetFavorites(email);
+        }
     }
 }
