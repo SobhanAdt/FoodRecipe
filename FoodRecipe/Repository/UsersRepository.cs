@@ -8,12 +8,16 @@ namespace FoodRecipe.Repository
 {
     public class UsersRepository
     {
-        private List<Register> Registers = new List<Register>();
+        private static List<Register> Registers = new List<Register>();
 
         public void Insert(Register register)
         {
             Registers.Add(register);
+        }
 
+        public Register GetByEmail(string email)
+        {
+            return Registers.FirstOrDefault(x => x.email == email);
         }
     }
 }

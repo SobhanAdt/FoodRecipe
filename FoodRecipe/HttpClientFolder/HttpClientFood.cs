@@ -14,12 +14,16 @@ namespace FoodRecipe.HttpClientFolder
         private readonly HttpClient client;
         private const string BaseAddress = "https://www.themealdb.com";
 
+
+
+
         public HttpClientFood(HttpClient client)
         {
             this.client = client;
             this.client.BaseAddress = new Uri(BaseAddress);
             this.client.DefaultRequestHeaders
                        .Add("Accept", "application/json");
+
         }
         public List<Area> GetArea(int size)
         {
@@ -114,6 +118,9 @@ namespace FoodRecipe.HttpClientFolder
             }
             return result;
         }
+
+
+       
 
     }
 }
