@@ -13,11 +13,11 @@ namespace FoodRecipe.Models
 
         public string strCategory { get; set; }
 
-        public string strAera { get; set; }
+        public string strArea { get; set; }
 
         public string strMealThumb { get; set; }
 
-        public string strstrInstructions { get; set; }
+        public string strInstructions { get; set; }
     }
 
     public class FoodByIdthemealdbList

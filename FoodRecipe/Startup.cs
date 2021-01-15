@@ -16,10 +16,10 @@ namespace FoodRecipe
 {
     public class Startup
     {
-        //commnet
+        
         public Startup(IConfiguration configuration)
         {
-            //ffdg
+           
             Configuration = configuration;
         }
 
@@ -28,7 +28,6 @@ namespace FoodRecipe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // test
             services.AddHttpClient<HttpClientFood>();
             services.AddControllers();
         }

@@ -13,7 +13,7 @@ namespace FoodRecipe.HttpClientFolder
     {
         private readonly HttpClient client;
         private const string BaseAddress = "https://www.themealdb.com";
-      
+
         public HttpClientFood(HttpClient client)
         {
             this.client = client;
@@ -36,8 +36,8 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-               var resultService = JsonSerializer.Deserialize<AreaList>(stringContent);
-                result = resultService.meals.Select(x => new Area { strArea = x.strArea}).Take(size).ToList();
+                var resultService = JsonSerializer.Deserialize<AreaList>(stringContent);
+                result = resultService.meals.Select(x => new Area { strArea = x.strArea }).Take(size).ToList();
             }
             return result;
         }
@@ -99,14 +99,17 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                     .Result;
 
-              var  serviceResult = JsonSerializer.Deserialize<FoodByIdthemealdbList>(stringContent);
+                var serviceResult = JsonSerializer.Deserialize<FoodByIdthemealdbList>(stringContent);
 
 
-              result = serviceResult.meals.Select(x => new foodsById()
-              {
-                  id = x.idMeal, area = x.strAera, instructions = x.strstrInstructions, mealThumb = x.strMealThumb,
-                  title = x.strMeal
-              }).FirstOrDefault();
+                result = serviceResult.meals.Select(x => new foodsById()
+                {
+                    id = x.idMeal,
+                    area = x.strArea,
+                    instructions = x.strInstructions,
+                    mealThumb = x.strMealThumb,
+                    title = x.strMeal
+                }).FirstOrDefault();
 
 
             }
