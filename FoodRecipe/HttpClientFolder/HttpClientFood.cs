@@ -84,5 +84,34 @@ namespace FoodRecipe.HttpClientFolder
             return result;
         }
 
+        public foodsById GetById(int id)
+        {
+            var httpResponse = client.GetAsync($"api/json/v1/1/lookup.php?i={id}").Result;
+            httpResponse.EnsureSuccessStatusCode();
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            foodsById result;
+            using (HttpContent content = httpResponse.Content)
+            {
+
+                string stringContent = content.ReadAsStringAsync()
+                    .Result;
+
+              var  serviceResult = JsonSerializer.Deserialize<FoodByIdthemealdbList>(stringContent);
+
+
+              result = serviceResult.meals.Select(x => new foodsById()
+              {
+                  id = x.idMeal, area = x.strAera, instructions = x.strstrInstructions, mealThumb = x.strMealThumb,
+                  title = x.strMeal
+              }).FirstOrDefault();
+
+
+            }
+            return result;
+        }
+
     }
 }
