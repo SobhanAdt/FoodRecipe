@@ -29,15 +29,15 @@ namespace FoodRecipe.HttpClientFolder
             {
                 return null;
             }
-          List< Area> result;
+            List<Area> result;
             using (HttpContent content = httpResponse.Content)
             {
 
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-                result = JsonSerializer.Deserialize<List<Area>>(stringContent);
-                result = result.Take(size).ToList();
+               var resultService = JsonSerializer.Deserialize<AreaList>(stringContent);
+                result = resultService.meals.Select(x => new Area { strArea = x.strArea}).Take(size).ToList();
             }
             return result;
         }

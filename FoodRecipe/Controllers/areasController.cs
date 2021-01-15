@@ -1,4 +1,5 @@
 ﻿using FoodRecipe.HttpClientFolder;
+using FoodRecipe.model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,8 +18,11 @@ namespace FoodRecipe.Controllers
         {
             this.food = food;
         }
-       
-
+        [HttpGet]
+        public List<Area> Getarea([FromQuery] int size)
+        {
+            return food.GetArea(size);
+        }
 
     }
 }
