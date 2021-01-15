@@ -7,6 +7,10 @@ namespace FoodRecipe.Models
 {
     public class categories
     {
-        public string strCaregory { get; set; }
+        public string strCategory { get; set; }
+    }
+    public class categorieslst
+    {
+        public List<categories> meals { get; set; }
     }
 }

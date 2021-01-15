@@ -10,4 +10,5 @@ namespace FoodRecipe.Models
         public string id { get; set; }
         public string ingredient { get; set; }
     }
+   
 }

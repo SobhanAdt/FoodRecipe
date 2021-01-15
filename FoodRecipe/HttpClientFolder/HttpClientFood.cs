@@ -56,8 +56,8 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-                result = JsonSerializer.Deserialize<List<categories>>(stringContent);
-                result = result.Take(size).ToList();
+                var resultService = JsonSerializer.Deserialize<categorieslst>(stringContent);
+                result = resultService.meals.Select(x => new categories { strCategory = x.strCategory }).Take(size).ToList();
             }
             return result;
         }
@@ -76,9 +76,8 @@ namespace FoodRecipe.HttpClientFolder
                 string stringContent = content.ReadAsStringAsync()
                                                .Result;
 
-                result = JsonSerializer.Deserialize<List<ingredients>>(stringContent);
-
-                result = result.Take(size).ToList();
+                var resultService = JsonSerializer.Deserialize<ingredientslst>(stringContent);
+                result = resultService.meals.Select(x => new ingredients { id = x.idIngredient,ingredient=x.strIngredient }).Take(size).ToList();
 
             }
             return result;
