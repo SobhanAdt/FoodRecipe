@@ -15,6 +15,7 @@ namespace FoodRecipe
 {
     public class Startup
     {
+        //commnet
         public Startup(IConfiguration configuration)
         {
             //ffdg
