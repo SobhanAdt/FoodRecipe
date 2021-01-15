@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FoodRecipe.Models
 {
-    public class UserInfo
+    public class Register
     {
         public string email { get; set; }
 
