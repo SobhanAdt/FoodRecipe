@@ -10,7 +10,7 @@ using FoodRecipe.Models;
 namespace FoodRecipe.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController ]
     public class favoritesController : ControllerBase
     {
         private readonly HttpClientFood client;
