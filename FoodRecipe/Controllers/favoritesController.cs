@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FoodRecipe.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController ]
     public class favoritesController : ControllerBase
     {
     }
