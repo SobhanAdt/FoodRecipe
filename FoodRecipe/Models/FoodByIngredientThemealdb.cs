@@ -11,4 +11,9 @@ namespace FoodRecipe.Models
         public string strMealThumb { get; set; }
         public string idMeal { get; set; }
     }
+      
+    public class FoodByIngredientThemealdbList
+    {
+        public List<FoodByIngredientThemealdb> meals { get; set; }
+    }
 }

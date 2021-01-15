@@ -17,7 +17,6 @@ namespace FoodRecipe.Controllers
         {
             this.food = food;
         }
-        [HttpGet]
-        public 
+         
     }
 }

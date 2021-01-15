@@ -11,4 +11,5 @@ namespace FoodRecipe.Models
         public string foodThumb { get; set; }
         public string id { get; set; }
     }
+
 }
